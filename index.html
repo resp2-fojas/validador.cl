@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificador de Códigos</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f3f7fa;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: linear-gradient(135deg, #ffffff, #f5f8fb);
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 400px;
+      max-width: 90%;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1e88e5;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #1e88e5;
+      box-shadow: 0 0 8px rgba(30, 136, 229, 0.2);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background: #1e88e5;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #1565c0;
+      box-shadow: 0 4px 15px rgba(30, 136, 229, 0.3);
+      transform: translateY(-2px);
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 500;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .valid {
+      background-color: #e8f5e9;
+      color: #28a745;
+      border: 1px solid #28a745;
+    }
+
+    .invalid {
+      background-color: #fbeaea;
+      color: #dc3545;
+      border: 1px solid #dc3545;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>30a Notaria Santiago</h1>
+    <p>Ingrese el código de validación:</p>
+    <input type="text" id="codeInput" placeholder="Ej: ABC123">
+    <button onclick="checkCode()">Verificar Código</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const validCodes = ["1A8F4NC9MX2", "1a8f4nc9mx2", "7H5H8B3V7N4", "8375838194"];
+
+    function checkCode() {
+      const inputCode = document.getElementById("codeInput").value.trim();
+      const resultElement = document.getElementById("result");
+      
+      resultElement.style.display = "block";
+      resultElement.textContent = "Verificando...";
+      resultElement.className = "";
+      
+      setTimeout(() => {
+        if (inputCode === "") {
+          resultElement.textContent = "Por favor, ingrese un código.";
+          resultElement.className = "invalid";
+        } else if (validCodes.includes(inputCode)) {
+          resultElement.textContent = "Documento tiene registro en 30a Notaria Santiago";
+          resultElement.className = "valid";
+        } else {
+          resultElement.textContent = "Documento no existe";
+          resultElement.className = "invalid";
+        }
+      }, 2000); // Delay de 2 segundos
+    }
+  </script>
+</body>
+</html>
